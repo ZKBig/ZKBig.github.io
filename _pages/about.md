@@ -18,7 +18,7 @@ Publications
   <div style="flex: 1;">
     <img src="../images/act.png" alt="ACT_pipeline" style="width: 400px;">
   </div>
-  <div style="flex: 3; padding-left: 20px;">
+  <div style="flex: 3; padding-left: 10px;">
     <h3 style="margin: 0;">Unveiling and Harnessing Hidden Attention Sinks: Enhancing Large Language Models without Training through Attention Calibration</h3>
     <p style="margin: 5px 0;">Zhongzhi Yu*, <strong>Zheng Wang*</strong>, Yonggan Fu, Huihong Shi, Khalid Shaikh, Yingyan (Celine) Lin</p>
     <p style="margin: 5px 0;"><i>2024 International Conference of Machine Learning, ICML 2024</i></p>
