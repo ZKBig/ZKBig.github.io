@@ -14,4 +14,20 @@ I am very fortunate to be advised by [Prof. Yingyan (Celine) Lin](https://eiclab
 
 Publications
 ======
-
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+<!--     <img src="path_to_your_image.png" alt="Control4D" style="width: 100px;"> -->
+  </div>
+  <div style="flex: 3; padding-left: 20px;">
+    <h3>Control4D: Dynamic Portrait Editing by Learning 4D GAN from 2D Diffusion-based Editor</h3>
+    <p>Ruizhi Shao, Jingxiang Sun, Cheng Peng, Zerong Zheng, Boyao Zhou, Hongwen Zhang, Yebin Liu</p>
+    <p><i>2024 IEEE Conference on Computer Vision and Pattern Recognition, CVPR 2024</i></p>
+<!--     <p> -->
+<!--       <a href="link_to_project">Project</a> |
+      <a href="link_to_pdf">PDF</a> |
+      <a href="link_to_code">Code</a> |
+      <a href="link_to_bibtex">BibTeX</a> -->
+<!--     </p> -->
+    <p>We propose Control4D, an approach to high-fidelity and spatiotemporal-consistent 4D portrait editing with only text instructions.</p>
+  </div>
+</div>
