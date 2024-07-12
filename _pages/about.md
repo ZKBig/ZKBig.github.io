@@ -16,11 +16,11 @@ Publications
 ======
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-<!--     <img src="path_to_your_image.png" alt="Control4D" style="width: 100px;"> -->
+    <img src="../images/act.png" alt="ACT_pipeline" style="width: 100px;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
     <h3>Unveiling and Harnessing Hidden Attention Sinks: Enhancing Large Language Models without Training through Attention Calibration</h3>
-    <p>Zhongzhi Yu*, **Zheng Wang***, Yonggan Fu, Huihong Shi, Khalid Shaikh, Yingyan (Celine) Lin</p>
+    <p>Zhongzhi Yu*, <strong>Zheng Wang*<strong>, Yonggan Fu, Huihong Shi, Khalid Shaikh, Yingyan (Celine) Lin</p>
     <p><i>2024 International Conference of Machine Learning, ICML 2024</i></p>
 <!--     <p> -->
 <!--       <a href="link_to_project">Project</a> |
