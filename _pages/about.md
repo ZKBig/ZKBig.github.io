@@ -19,13 +19,13 @@ Publications
     <img src="../images/act.png" alt="ACT_pipeline" style="width: 400px;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
-    <h3>Unveiling and Harnessing Hidden Attention Sinks: Enhancing Large Language Models without Training through Attention Calibration</h3>
-    <p>Zhongzhi Yu*, <strong>Zheng Wang*</strong>, Yonggan Fu, Huihong Shi, Khalid Shaikh, Yingyan (Celine) Lin</p>
-    <p><i>2024 International Conference of Machine Learning, ICML 2024</i></p>
-<!--     <p> -->
+    <h3 style="margin: 0;">Unveiling and Harnessing Hidden Attention Sinks: Enhancing Large Language Models without Training through Attention Calibration</h3>
+    <p style="margin: 5px 0;">Zhongzhi Yu*, <strong>Zheng Wang*</strong>, Yonggan Fu, Huihong Shi, Khalid Shaikh, Yingyan (Celine) Lin</p>
+    <p style="margin: 5px 0;"><i>2024 International Conference of Machine Learning, ICML 2024</i></p>
+    <p style="margin: 5px 0;">
       <a href="https://arxiv.org/abs/2406.15765">PDF</a> |
       <a href="https://github.com/GATECH-EIC/ACT">Code</a> |
-<!--     </p> -->
+    </p>
 <!--     <p>We propose Control4D, an approach to high-fidelity and spatiotemporal-consistent 4D portrait editing with only text instructions.</p> -->
   </div>
 </div>
