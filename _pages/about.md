@@ -16,7 +16,7 @@ Publications
 ======
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="../images/act.png" alt="ACT_pipeline" style="width: 200px;">
+    <img src="../images/act.png" alt="ACT_pipeline" style="width: 300px;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
     <h3>Unveiling and Harnessing Hidden Attention Sinks: Enhancing Large Language Models without Training through Attention Calibration</h3>
