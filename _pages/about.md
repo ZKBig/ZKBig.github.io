@@ -79,3 +79,20 @@ Publications
   </div>
 </div>
 
+
+<div style="display: flex; align-items: center;margin-bottom: 20px;">
+  <div style="flex: 1;">
+    <img src="../images/XRouting_model.png" alt="XRouting_model.png" style="width: 400px;">
+  </div>
+  <div style="flex: 3; padding-left: 10px;">
+    <h3 style="margin: 0;">XRouting: Explainable Vehicle Rerouting for Urban Road Congestion Avoidance using Deep Reinforcement Learning</h3>
+    <p style="margin: 5px 0;"><strong>Zheng Wang</strong>, Shen Wang</p>
+    <p style="margin: 5px 0;"><i>2022 IEEE Smart City Conference, ISC2 2022</i></p>
+    <p style="margin: 5px 0;">
+      <a href="https://ieeexplore.ieee.org/document/9922404">PDF</a> |
+      <a href="https://github.com/ZKBig/XRouting">Code</a> |
+    </p>
+<!--     <p>We propose Control4D, an approach to high-fidelity and spatiotemporal-consistent 4D portrait editing with only text instructions.</p> -->
+  </div>
+</div>
+
