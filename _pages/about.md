@@ -82,7 +82,7 @@ Publications
 
 <div style="display: flex; align-items: center;margin-bottom: 20px;">
   <div style="flex: 1;">
-    <img src="../images/XRouting_model.png" alt="XRouting_model.png" style="width: 400px;">
+    <img src="../images/XRouting_model.png" alt="XRouting_model.png" style="width: 300px;">
   </div>
   <div style="flex: 3; padding-left: 10px;">
     <h3 style="margin: 0;">XRouting: Explainable Vehicle Rerouting for Urban Road Congestion Avoidance using Deep Reinforcement Learning</h3>
