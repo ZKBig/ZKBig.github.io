@@ -61,3 +61,21 @@ Publications
 <!--     <p>We propose Control4D, an approach to high-fidelity and spatiotemporal-consistent 4D portrait editing with only text instructions.</p> -->
   </div>
 </div>
+
+
+<div style="display: flex; align-items: center;margin-bottom: 20px;">
+  <div style="flex: 1;">
+    <img src="../images/edge_LLM.png" alt="edge_LLM.png" style="width: 400px;">
+  </div>
+  <div style="flex: 3; padding-left: 10px;">
+    <h3 style="margin: 0;">EDGE-LLM: Enabling Efficient Large Language Model Adaptation on Edge Devices via Layerwise Unified Compression and Adaptive Layer Tuning & Voting</h3>
+    <p style="margin: 5px 0;">Zhongzhi Yu, <strong>Zheng Wang</strong>, Yuhan Li, Haoran You, Ruijie Gao, Xiaoya Zhou, Sreenidhi Reedy Bommu, Yang Katie Zhao, Yingyan Celine Lin</p>
+    <p style="margin: 5px 0;"><i>61st ACM/IEEE Design Automation Conference, DAC 2024</i></p>
+    <p style="margin: 5px 0;">
+      <a href="https://arxiv.org/abs/2406.15758">PDF</a> |
+      <a href="https://github.com/GATECH-EIC/Edge-LLM">Code</a> |
+    </p>
+<!--     <p>We propose Control4D, an approach to high-fidelity and spatiotemporal-consistent 4D portrait editing with only text instructions.</p> -->
+  </div>
+</div>
+
