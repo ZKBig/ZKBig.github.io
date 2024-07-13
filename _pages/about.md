@@ -16,7 +16,7 @@ Publications
 ======
 <div style="display: flex; align-items: center;margin-bottom: 20px;">
   <div style="flex: 1;">
-    <img src="../images/act.png" alt="ACT_pipeline" style="width: 400px;">
+    <img src="../images/KVMerger.png" alt="KVMerger" style="width: 400px;">
   </div>
   <div style="flex: 3; padding-left: 10px;">
     <h3 style="margin: 0;">Model Tells You Where to Merge: Adaptive KV Cache Merging for LLMs on Long-Context Tasks</h3>
@@ -48,7 +48,7 @@ Publications
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="../images/act.png" alt="ACT_pipeline" style="width: 400px;margin-bottom: 20px;">
+    <img src="../images/speculation.png" alt="speculation" style="width: 400px;margin-bottom: 20px;">
   </div>
   <div style="flex: 3; padding-left: 10px;">
     <h3 style="margin: 0;">When Linear Attention Meets Autoregressive Decoding: Towards More Effective and Efficient Linearized Large Language Models</h3>
