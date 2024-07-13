@@ -14,7 +14,7 @@ I am very fortunate to be advised by [Prof. Yingyan (Celine) Lin](https://eiclab
 
 Publications
 ======
-<div style="display: flex; align-items: center;">
+<div style="display: flex; align-items: center;margin-bottom: 20px;">
   <div style="flex: 1;">
     <img src="../images/act.png" alt="ACT_pipeline" style="width: 400px;">
   </div>
@@ -32,7 +32,7 @@ Publications
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="../images/act.png" alt="ACT_pipeline" style="width: 400px;">
+    <img src="../images/act.png" alt="ACT_pipeline" style="width: 400px;margin-bottom: 20px;">
   </div>
   <div style="flex: 3; padding-left: 10px;">
     <h3 style="margin: 0;">Unveiling and Harnessing Hidden Attention Sinks: Enhancing Large Language Models without Training through Attention Calibration</h3>
@@ -48,7 +48,7 @@ Publications
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="../images/act.png" alt="ACT_pipeline" style="width: 400px;">
+    <img src="../images/act.png" alt="ACT_pipeline" style="width: 400px;margin-bottom: 20px;">
   </div>
   <div style="flex: 3; padding-left: 10px;">
     <h3 style="margin: 0;">When Linear Attention Meets Autoregressive Decoding: Towards More Effective and Efficient Linearized Large Language Models</h3>
