@@ -21,7 +21,7 @@ Publications
   <div style="flex: 3; padding-left: 10px;">
     <h3 style="margin: 0;">Model Tells You Where to Merge: Adaptive KV Cache Merging for LLMs on Long-Context Tasks</h3>
     <p style="margin: 5px 0;"><strong>Zheng Wang</strong>, Boxiao Jin, Zhongzhi Yu, Minjia Zhang</p>
-    <p style="margin: 5px 0;"><i>preprint</i></p>
+    <p style="margin: 5px 0;"><i>preprint, 2024</i></p>
     <p style="margin: 5px 0;">
       <a href="https://arxiv.org/abs/2407.08454">PDF</a> |
 <!--       <a href="https://github.com/GATECH-EIC/ACT">Code</a> | -->
