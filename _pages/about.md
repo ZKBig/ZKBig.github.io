@@ -100,7 +100,7 @@ Publications
 
 Selected Awards
 ======
-- **[Jun. 2023]** Excellent Graduates of Beijing<br>
-- **[Nov. 2022]** Presidential Fellowship in 2021-2022 Academic Year<br>
-- **[Nov. 2022]** Xiaomi Special Scholarship in 2021-2022 Academic Year
+**[Jun. 2023]** Excellent Graduates of Beijing<br>
+**[Nov. 2022]** Presidential Fellowship in 2021-2022 Academic Year<br>
+**[Nov. 2022]** Xiaomi Special Scholarship in 2021-2022 Academic Year
 
