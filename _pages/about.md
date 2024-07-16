@@ -12,6 +12,8 @@ I am planning to apply for the PhD program starting in Fall 2025. My current res
 
 I am very fortunate to be advised by [Prof. Yingyan (Celine) Lin](https://eiclab.scs.gatech.edu/pages/team.html) of [EIC](https://eiclab.scs.gatech.edu/) Lab as a research intern from [School of Computer Science](https://scs.gatech.edu/), Georgia Tech. Additionally, I am advised by [Prof. Minjia Zhang](https://minjiazhang.github.io/) as a 2024 summer research intern from [Department of Computer Science](https://cs.illinois.edu/), University of Illinois Urbana-Champaign.
 
+Outside of academia, I am accustomed to maintaining good health through regular body training exercises. Additionally, I am an enthusiastic learner of tennis. I find it to be a fascinating and challenging sport that offers both physical and mental benefits. 
+
 Publications
 ======
 <div style="display: flex; align-items: center;margin-bottom: 20px;">
@@ -95,4 +97,10 @@ Publications
 <!--     <p>We propose Control4D, an approach to high-fidelity and spatiotemporal-consistent 4D portrait editing with only text instructions.</p> -->
   </div>
 </div>
+
+Selected Awards
+======
+- **[Jun. 2023]** Excellent Graduates of Beijing
+- **[Nov. 2022]** Presidential Fellowship in 2021-2022 Academic Year
+- **[Nov. 2022]** Xiaomi Special Scholarship in 2021-2022 Academic Year
 
