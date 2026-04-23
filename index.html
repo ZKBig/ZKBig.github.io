@@ -10,17 +10,19 @@
     <style>
       /* ---- Auto-scrolling news ---- */
       .news-box {
-        max-height: 160px;
-        overflow: hidden;
+        height: 160px !important;         /* 用 height 而不是 max-height,强制固定 */
+        max-height: 160px !important;
+        overflow: hidden !important;
         border: 1px solid #ddd;
         padding: 10px 15px;
         background: #fafafa;
         font-size: 14px;
-        line-height: 1.7;
+        line-height: 1.7 !important;
         position: relative;
+        box-sizing: border-box;
       }
-      .news-list { margin: 0; padding: 0; }
-      .news-list p { margin: 4px 0; }
+      .news-list { margin: 0 !important; padding: 0 !important; }
+      .news-list p { margin: 4px 0 !important; padding: 0 !important; }
       .news-date { color: #888; font-weight: bold; margin-right: 6px; }
 
       /* 顶部/底部渐变 */
@@ -391,35 +393,48 @@
     <!-- ============ News 自动滚动脚本 ============ -->
     <script>
       (function() {
-        const box  = document.getElementById('news-box');
-        const list = document.getElementById('news-list');
-        if (!box || !list) return;
+        function startNewsScroll() {
+          const box  = document.getElementById('news-box');
+          const list = document.getElementById('news-list');
+          if (!box || !list) return;
 
-        const clone = list.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        box.appendChild(clone);
+          // 避免重复初始化
+          if (box.dataset.scrollInit === '1') return;
+          box.dataset.scrollInit = '1';
 
-        let paused = false;
-        const speed = 0.4;
+          // 复制一份内容接在后面,实现无缝循环
+          const clone = list.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          clone.removeAttribute('id');
+          box.appendChild(clone);
 
-        function step() {
-          if (!paused) {
-            box.scrollTop += speed;
-            if (box.scrollTop >= list.offsetHeight) {
-              box.scrollTop = 0;
+          let paused = false;
+          const speed = 0.4;         // 像素/帧,数值越大滚得越快
+
+          function step() {
+            if (!paused) {
+              box.scrollTop += speed;
+              // 用 offsetHeight 测第一份的实际高度
+              if (box.scrollTop >= list.offsetHeight) {
+                box.scrollTop = 0;
+              }
             }
+            requestAnimationFrame(step);
           }
+
+          box.addEventListener('mouseenter', () => paused = true);
+          box.addEventListener('mouseleave', () => paused = false);
+
+          // 不再判断高度是否足够,直接启动
           requestAnimationFrame(step);
         }
 
-        box.addEventListener('mouseenter', () => paused = true);
-        box.addEventListener('mouseleave', () => paused = false);
-
-        setTimeout(() => {
-          if (list.offsetHeight > box.clientHeight) {
-            requestAnimationFrame(step);
-          }
-        }, 100);
+        // 页面完全加载 + 字体渲染完成后再启动,保证高度测量正确
+        if (document.readyState === 'complete') {
+          startNewsScroll();
+        } else {
+          window.addEventListener('load', startNewsScroll);
+        }
       })();
     </script>
   </body>
