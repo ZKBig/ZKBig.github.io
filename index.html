@@ -393,14 +393,19 @@
     <!-- ============ News 自动滚动脚本 ============ -->
     <script>
       (function() {
+        let initialized = false;
+
         function startNewsScroll() {
+          if (initialized) return;
+
           const box  = document.getElementById('news-box');
           const list = document.getElementById('news-list');
           if (!box || !list) return;
 
-          // 避免重复初始化
-          if (box.dataset.scrollInit === '1') return;
-          box.dataset.scrollInit = '1';
+          // 高度还没算出来,稍后重试 —— Safari 偶尔会遇到这种情况
+          if (list.offsetHeight === 0) return;
+
+          initialized = true;
 
           // 复制一份内容接在后面,实现无缝循环
           const clone = list.cloneNode(true);
@@ -414,7 +419,6 @@
           function step() {
             if (!paused) {
               box.scrollTop += speed;
-              // 用 offsetHeight 测第一份的实际高度
               if (box.scrollTop >= list.offsetHeight) {
                 box.scrollTop = 0;
               }
@@ -425,16 +429,26 @@
           box.addEventListener('mouseenter', () => paused = true);
           box.addEventListener('mouseleave', () => paused = false);
 
-          // 不再判断高度是否足够,直接启动
           requestAnimationFrame(step);
         }
 
-        // 页面完全加载 + 字体渲染完成后再启动,保证高度测量正确
-        if (document.readyState === 'complete') {
+        // 多重触发保险 —— 不管浏览器处于什么状态,总有一个会成功:
+        // 1) DOM 已经就绪就立刻试
+        // 2) DOMContentLoaded 时再试
+        // 3) load 时再试
+        // 4) 兜底:每 200ms 重试一次,最多 10 次
+        if (document.readyState !== 'loading') {
           startNewsScroll();
-        } else {
-          window.addEventListener('load', startNewsScroll);
         }
+        document.addEventListener('DOMContentLoaded', startNewsScroll);
+        window.addEventListener('load', startNewsScroll);
+
+        let retries = 0;
+        const retryTimer = setInterval(() => {
+          startNewsScroll();
+          retries++;
+          if (initialized || retries >= 10) clearInterval(retryTimer);
+        }, 200);
       })();
     </script>
   </body>
