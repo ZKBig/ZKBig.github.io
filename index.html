@@ -10,7 +10,6 @@
     <style>
       /* ---- Auto-scrolling news ---- */
       .news-box {
-        height: 160px !important;         /* 用 height 而不是 max-height,强制固定 */
         max-height: 160px !important;
         overflow: hidden !important;
         border: 1px solid #ddd;
@@ -393,62 +392,36 @@
     <!-- ============ News 自动滚动脚本 ============ -->
     <script>
       (function() {
-        let initialized = false;
+        const box  = document.getElementById('news-box');
+        const list = document.getElementById('news-list');
+        if (!box || !list) return;
 
-        function startNewsScroll() {
-          if (initialized) return;
+        // 把原始内容再复制一份贴在后面,实现无缝循环
+        const clone = list.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        box.appendChild(clone);
 
-          const box  = document.getElementById('news-box');
-          const list = document.getElementById('news-list');
-          if (!box || !list) return;
+        let paused = false;
+        const speed = 0.4;      // 像素/帧,数值越大滚得越快
 
-          // 高度还没算出来,稍后重试 —— Safari 偶尔会遇到这种情况
-          if (list.offsetHeight === 0) return;
-
-          initialized = true;
-
-          // 复制一份内容接在后面,实现无缝循环
-          const clone = list.cloneNode(true);
-          clone.setAttribute('aria-hidden', 'true');
-          clone.removeAttribute('id');
-          box.appendChild(clone);
-
-          let paused = false;
-          const speed = 0.4;         // 像素/帧,数值越大滚得越快
-
-          function step() {
-            if (!paused) {
-              box.scrollTop += speed;
-              if (box.scrollTop >= list.offsetHeight) {
-                box.scrollTop = 0;
-              }
+        function step() {
+          if (!paused) {
+            box.scrollTop += speed;
+            if (box.scrollTop >= list.offsetHeight) {
+              box.scrollTop = 0;
             }
-            requestAnimationFrame(step);
           }
-
-          box.addEventListener('mouseenter', () => paused = true);
-          box.addEventListener('mouseleave', () => paused = false);
-
           requestAnimationFrame(step);
         }
 
-        // 多重触发保险 —— 不管浏览器处于什么状态,总有一个会成功:
-        // 1) DOM 已经就绪就立刻试
-        // 2) DOMContentLoaded 时再试
-        // 3) load 时再试
-        // 4) 兜底:每 200ms 重试一次,最多 10 次
-        if (document.readyState !== 'loading') {
-          startNewsScroll();
-        }
-        document.addEventListener('DOMContentLoaded', startNewsScroll);
-        window.addEventListener('load', startNewsScroll);
+        box.addEventListener('mouseenter', () => paused = true);
+        box.addEventListener('mouseleave', () => paused = false);
 
-        let retries = 0;
-        const retryTimer = setInterval(() => {
-          startNewsScroll();
-          retries++;
-          if (initialized || retries >= 10) clearInterval(retryTimer);
-        }, 200);
+        setTimeout(() => {
+          if (list.offsetHeight > box.clientHeight) {
+            requestAnimationFrame(step);
+          }
+        }, 100);
       })();
     </script>
   </body>
