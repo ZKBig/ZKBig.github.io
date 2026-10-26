@@ -1,391 +1,312 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Zheng Wang</title>
-    <meta name="author" content="Zheng Wang">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <style>
-      /* ---- Manual-scroll news ---- */
-      .news-box {
-        max-height: 160px !important;
-        overflow-y: auto !important;     /* 用户手动滚动 */
-        overflow-x: hidden !important;
-        border: 1px solid #ddd;
-        padding: 10px 15px;
-        background: #fafafa;
-        font-size: 14px;
-        line-height: 1.7 !important;
-        position: relative;
-        box-sizing: border-box;
-        /* 触控板上更顺滑 */
-        -webkit-overflow-scrolling: touch;
-      }
-      .news-list { margin: 0 !important; padding: 0 !important; }
-      .news-list p { margin: 4px 0 !important; padding: 0 !important; }
-      .news-date { color: #888; font-weight: bold; margin-right: 6px; }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Zheng Wang">
+  <title>Zheng Wang</title>
+  <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
 
-      /* 自定义滚动条样式 —— 更细更淡,不突兀 */
-      .news-box::-webkit-scrollbar {
-        width: 6px;
-      }
-      .news-box::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .news-box::-webkit-scrollbar-thumb {
-        background: #ccc;
-        border-radius: 3px;
-      }
-      .news-box::-webkit-scrollbar-thumb:hover {
-        background: #999;
-      }
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
-      /* 极简: news-wrapper 不再需要渐变 */
-      .news-wrapper { position: relative; }
+  <style>
+    /* 主题色：改这一行即可换导航栏颜色 */
+    :root { --theme: #13294B; }
 
-      /* ---- Publications ---- */
-      .pub-section-title {
-        font-size: 18px;
-        font-weight: bold;
-        color: #b00;
-        margin: 20px 0 6px 0;
-        padding-bottom: 4px;
-        border-bottom: 1px solid #eee;
-      }
-      .pub-title   { font-weight: bold; margin: 0 0 3px 0; font-size: 15px; }
-      .pub-authors { margin: 2px 0; font-size: 14px; }
-      .pub-venue   { margin: 2px 0; font-size: 14px; font-style: italic; color: #555; }
-      .pub-links   { margin: 4px 0 0 0; font-size: 14px; }
-      .pub-links a { text-decoration: none; }
-      .pub-links a:hover { text-decoration: underline; }
+    body { font-size: 17px; color: #212529; background: #fff; }
+    html { scroll-behavior: smooth; }
+    .navbar-custom { background-color: var(--theme); }
+    .navbar-custom .navbar-brand, .navbar-custom .nav-link { color: #fff !important; }
+    .navbar-custom .nav-link { font-size: 18px; }
+    .navbar-custom .nav-link:hover { opacity: .8; }
 
-      .pub-row { border-bottom: 1px dashed #eee; }
-      .pub-row:last-child { border-bottom: none; }
+    h3.section { padding-top: 70px; margin-top: -60px; }
+    .profile { max-width: 100%; border: 1px solid #000; }
+    .contact a { color: #000; }
+    .contact a:hover { color: var(--theme); text-decoration: none; }
 
-      /* 无缩略图时的占位 */
-      .pub-thumb-placeholder {
-        width: 100%;
-        max-width: 230px;
-        aspect-ratio: 16 / 10;
-        background: #f0f0f0;
-        border: 1px dashed #ccc;
-        color: #aaa;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-      }
-    </style>
-  </head>
+    .news-list { max-height: 330px; overflow-y: auto; padding-right: 8px; }
+    .news-list li { margin-bottom: 2px; }
 
-  <body>
-    <table style="width:100%;max-width:800px;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
-    <tr><td style="padding:0">
+    .pub-cat { margin: 26px 0 14px; font-weight: 600; color: var(--theme); }
+    .pub { align-items: center; }
+    .pub-img { width: 200px; max-height: 140px; object-fit: contain; }
+    .pub-hl { font-weight: bold; display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+    .hl-icon { height: 18px; width: auto; }
 
-      <!-- ============ 顶部:姓名 + 简介 + 头像 ============ -->
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
-        <tr>
-          <td style="padding:2.5%;width:70%;vertical-align:middle">
-            <p class="name" style="text-align:center">Zheng Wang</p>
+    @media (max-width: 767px) {
+      .pub-img { margin-bottom: 10px; }
+      #About p { text-align: left !important; }
+    }
+  </style>
+</head>
 
-            <p>
-              I am a first-year PhD student in
-              <a href="https://siebelschool.illinois.edu/">Computer Science</a> at the
-              <a href="https://siebelschool.illinois.edu/">University of Illinois Urbana-Champaign</a>,
-              advised by <a href="https://minjiazhang.github.io/">Prof. Minjia Zhang</a>.
-              My research focuses on efficient and interpretable foundation models. Specifically:
-              <br><br>
-              (1) Leveraging sparsity and system–algorithm co-design to accelerate the
-              inference and training of LLMs and VLMs.<br>
-              (2) Developing empirical and theoretical insights to understand and optimize
-              LLMs and VLMs.
-            </p>
+<body>
+  <!-- ============ 导航栏 ============ -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-custom" id="Home">
+    <div class="container">
+      <a class="navbar-brand" href="#Home" style="font-size:20px">Zheng Wang</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggle">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="#About">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#News">News</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Publications">Publications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Teaching">Teaching</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Awards">Awards</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-            <p>
-              Prior to UIUC, I was fortunate to be advised by
-              <a href="https://eiclab.scs.gatech.edu/pages/team.html">Prof. Yingyan (Celine) Lin</a>
-              at the <a href="https://eiclab.scs.gatech.edu/">EIC Lab</a> as a Research Assistant in the
-              <a href="https://scs.gatech.edu/">School of Computer Science</a>, Georgia Tech.
-            </p>
+  <!-- ============ About ============ -->
+  <div class="container" style="padding-top: 80px" id="About">
+    <div class="row">
+      <div class="col-md-3" style="padding-right: 40px">
+        <br>
+        <img class="img-fluid profile" src="images/profile.png" alt="Photo"><br>
+      </div>
 
-            <p>
-              Outside of research, I like to stay healthy by working out regularly, and I'm
-              really into playing 🎾 tennis 🎾 — it keeps me both physically and mentally sharp.
-            </p>
+      <div class="col-md-9">
+        <br>
+        <p style="text-align: justify;">
+          I am a first-year PhD student in
+          <a href="https://siebelschool.illinois.edu/" target="_blank">Computer Science</a> at the
+          <a href="https://illinois.edu/" target="_blank">University of Illinois Urbana-Champaign</a>,
+          advised by <a href="https://minjiazhang.github.io/" target="_blank">Prof. Minjia Zhang</a>.
+          Prior to UIUC, I was fortunate to be advised by
+          <a href="https://eiclab.scs.gatech.edu/pages/team.html" target="_blank">Prof. Yingyan (Celine) Lin</a>
+          at the <a href="https://eiclab.scs.gatech.edu/" target="_blank">EIC Lab</a> as a Research Assistant in the
+          <a href="https://scs.gatech.edu/" target="_blank">School of Computer Science</a>, Georgia Tech.
+        </p>
+        <p style="text-align: justify;">
+          My research focuses on efficient and interpretable foundation models. Specifically:
+          (1) leveraging sparsity and system–algorithm co-design to accelerate the inference and training of LLMs and VLMs;
+          (2) developing empirical and theoretical insights to understand and optimize LLMs and VLMs.
+        </p>
+        <p style="text-align: justify;">
+          Outside of research, I like to stay healthy by working out regularly, and I'm really into playing 🎾 tennis —
+          it keeps me both physically and mentally sharp.
+        </p>
+        <p class="contact">
+          <a target="_blank" href="https://scholar.google.com/citations?user=MIBiy2gAAAAJ&amp;hl=en" title="Google Scholar"><i class="ai ai-google-scholar ai-lg"></i></a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;
+          <a target="_blank" href="https://github.com/ZKBig" title="GitHub"><i class="fab fa-github fa-lg"></i></a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;
+          zhengw10 [at] illinois (dot) edu
+        </p>
+      </div>
+    </div>
+  </div><br>
 
-            <p style="text-align:center">
-              <a href="mailto:zhengw10@illinois.edu">Email</a> &nbsp;/&nbsp;
-              <a href="https://scholar.google.com/citations?user=MIBiy2gAAAAJ&hl=en">Google Scholar</a> &nbsp;/&nbsp;
-              <a href="https://github.com/ZKBig">Github</a>
-            </p>
-          </td>
+  <!-- ============ Research Interest ============ -->
+  <div class="container">
+    <h3 class="section" id="Research">Research Interest</h3><hr>
+    <ul>
+			<li><b>Efficient LLM Inference &amp; Compression</b>: [<a href="https://arxiv.org/abs/2608.02438" target="_blank">arXiv'26</a>] [<a href="https://arxiv.org/abs/2607.22634" target="_blank">COLM'26 WS Oral</a>] [<a href="https://openreview.net/forum?id=MjmORKLHUI" target="_blank">ICLR'26</a>] [<a href="https://arxiv.org/pdf/2511.04805" target="_blank">ICML'26</a>] [<a href="https://aclanthology.org/2025.acl-short.96.pdf" target="_blank">ACL'25</a>] [<a href="https://arxiv.org/abs/2407.08454" target="_blank">arXiv'24</a>] [<a href="https://arxiv.org/abs/2406.07368" target="_blank">ICML'24</a>] [<a href="https://arxiv.org/abs/2406.15765" target="_blank">ICML'24</a>] [<a href="https://arxiv.org/abs/2406.15758" target="_blank">DAC'24</a>]</li>
+			<li><b>Efficient LLM Reasoning &amp; Test-Time Compute</b>: [<a href="https://arxiv.org/pdf/2510.04072" target="_blank">ICLR'26</a>] [<a href="https://arxiv.org/pdf/2601.09093" target="_blank">ACL Findings'26</a>] [<a href="https://par.nsf.gov/servlets/purl/10663192" target="_blank">EACL'26</a>] [<a href="https://dl.acm.org/doi/pdf/10.1145/3725843.3756039" target="_blank">MICRO'25</a>]</li>
+    </ul>
+  </div><br>
 
-          <td style="padding:2.5%;width:30%;max-width:30%">
-            <a href="images/profile.png">
-              <img style="width:80%;max-width:80%;max-height:400px;object-fit:cover;border-radius:50%;"
-                   alt="profile photo" src="images/profile.png" class="hoverZoomLink">
-            </a>
-          </td>
-        </tr>
-      </tbody></table>
+  <!-- ============ News ============ -->
+  <div class="container">
+    <h3 class="section" id="News">News</h3><hr>
+    <ul class="news-list">
+			<li><tt>[Oct. 2026]</tt> <strong>PRESTO</strong> selected as an <strong>Oral</strong> and <strong>Best Paper Candidate</strong> at the COLM 2026 Workshop on Efficient Reasoning.</li>
+			<li><tt>[Aug. 2026]</tt> <strong>xPress</strong> released on arXiv: parallel refinement for diffusion drafters in speculative decoding.</li>
+			<li><tt>[Jul. 2026]</tt> <strong>PRESTO</strong> released on arXiv: prefix-aligned tree drafting for diffusion speculative decoding.</li>
+			<li><tt>[May 2026]</tt> Gave an invited talk on <b>PRESTO</b> and <b>PuzzleMoE</b> at NVIDIA.</li>
+			<li><tt>[May 2026]</tt> I was selected as "Gold Reviewer" by ICML 2026.</li>
+			<li><tt>[Apr. 2026]</tt> PuzzleMoE is accepted to ICML 2026.</li>
+			<li><tt>[Jan. 2026]</tt> Two papers accepted to ICLR 2026 (Slow Fast Policy Optimization; Universal Position Interpolation). Congratulations to all collaborators.</li>
+			<li><tt>[Jan. 2026]</tt> One paper accepted to ACL 2026 (Hidden States as Early Signals).</li>
+			<li><tt>[Jan. 2026]</tt> One paper accepted to EACL 2026 (Think Hard Only When Needed).</li>
+			<li><tt>[Sep. 2025]</tt> ORCHES accepted to MICRO 2025.</li>
+			<li><tt>[Aug. 2025]</tt> Started my PhD at UIUC with Prof. Minjia Zhang!</li>
+			<li><tt>[May 2025]</tt> One paper accepted to ACL 2025 (LAMB).</li>
+			<li><tt>[Jul. 2024]</tt> KVMerger released on arXiv.</li>
+			<li><tt>[May 2024]</tt> Two papers accepted to ICML 2024 (Attention Calibration for LLMs, Linearized-LLM).</li>
+			<li><tt>[May 2024]</tt> One paper accepted to DAC 2024 (EDGE-LLM).</li>
+    </ul>
+  </div><br>
 
-      <!-- ============ News (auto-scroll) ============ -->
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
-        <tr><td style="padding:10px 20px 0 20px">
-          <h2 style="margin-bottom:8px">News</h2>
+  <!-- ============ Publications ============ -->
+  <div class="container">
+    <h3 class="section" id="Publications">
+      Selected Publications
+      <small><small> (<i>see full publication list <a href="https://scholar.google.com/citations?user=MIBiy2gAAAAJ&amp;hl=en" target="_blank">here</a>; * indicates equal contribution</i>)</small></small>
+    </h3>
+    <hr>
+			<h5 class="pub-cat">Efficient LLM Inference &amp; Compression</h5>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/xPress.png" alt=""></div>
+				<div class="col-md-9">
+					<b>Zheng Wang</b>, Davis Wertheimer, Yu Chin Fabian Lim, Mudhakar Srivatsa, Raghu K. Ganti, Minjia Zhang, Naigang Wang<br>
+					<b><font color="black">xPress: Parallel Refinement for Diffusion Drafters in Speculative Decoding</font></b><br>
+					<b><a href="https://arxiv.org/abs/2608.02438" target="_blank">arXiv preprint, 2026</a></b> <small><a href="https://arxiv.org/abs/2608.02438" target="_blank">[Paper]</a></small> <small><a href="https://github.com/Supercomputing-System-AI-Lab/xPress" target="_blank">[Code]</a></small> <small><a href="https://supercomputing-system-ai-lab.github.io/blogs/blog/xpress-parallel-refinement-for-diffusion-drafters-in-speculative-decoding/" target="_blank">[Blog]</a></small> <small><a href="https://github.com/vllm-project/vllm/pull/54448" target="_blank">[vLLM]</a></small> <small><a href="https://github.com/vllm-project/speculators/blob/main/examples/train/xpress_qwen3_8b_regen_online.sh" target="_blank">[Speculators]</a></small>
+					<div class="pub-hl" style="color:#d99a12"><img src="images/vllm-logo.png" alt="vLLM" class="hl-icon">Supported in vLLM!</div>
+					<div class="pub-hl" style="color:#2b8be6"><img src="images/speculators-icon.svg" alt="Speculators" class="hl-icon">Supported in Speculators!</div>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/PRESTO.png" alt=""></div>
+				<div class="col-md-9">
+					<b>Zheng Wang*</b>, Zhifan Ye*, Qi Cheng, Yonggan Fu, Ziyan Wang, Feng Zhu, Haozhe Zhao, Jan Kautz, Pavlo Molchanov, Humphrey Shi, Minjia Zhang<br>
+					<b><font color="black">PRESTO: Prefix-Aligned Tree Drafting for Diffusion Speculative Decoding</font></b><br>
+					<b><a href="https://arxiv.org/abs/2607.22634" target="_blank">COLM 2026 Workshop on Efficient Reasoning</a></b> <small><a href="https://arxiv.org/abs/2607.22634" target="_blank">[Paper]</a></small>
+					<div class="pub-hl" style="color:#c8901c">🏆 Oral &amp; Best Paper Candidate</div>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/UPI.png" alt=""></div>
+				<div class="col-md-9">
+					Haochen Shen, Davis Wertheimer, <b>Zheng Wang</b>, Garrett Goon, Derrick Liu, Naigang Wang, Mudhakar Srivatsa, Raghu K. Ganti, Minjia Zhang<br>
+					<b><font color="black">From Collapse to Control: Understanding and Extending Context Length in Emerging Hybrid Models via Universal Position Interpolation</font></b><br>
+					<b><a href="https://openreview.net/forum?id=MjmORKLHUI" target="_blank">ICLR 2026</a></b> <small><a href="https://openreview.net/forum?id=MjmORKLHUI" target="_blank">[Paper]</a></small>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/PuzzleMoE.png" alt=""></div>
+				<div class="col-md-9">
+					Yushu Zhao*, <b>Zheng Wang*</b>, Minjia Zhang<br>
+					<b><font color="black">PuzzleMoE: Efficient Compression of Large Mixture-of-Experts Models via Sparse Expert Merging and Bit-packed Inference</font></b><br>
+					<b><a href="https://arxiv.org/pdf/2511.04805" target="_blank">ICML 2026</a></b> <small><a href="https://arxiv.org/pdf/2511.04805" target="_blank">[Paper]</a></small>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/LAMB.png" alt=""></div>
+				<div class="col-md-9">
+					Zhifan Ye, <b>Zheng Wang</b>, Kejing Xia, Jihoon Hong, Leshu Li, Lexington A. Whalen, Cheng Wan, Haoran You, Celine Lin, Souvik Kundu<br>
+					<b><font color="black">LAMB: A Training-Free Method to Enhance the Long-Context Understanding of SSMs via Attention-Guided Token Filtering</font></b><br>
+					<b><a href="https://aclanthology.org/2025.acl-short.96.pdf" target="_blank">ACL 2025</a></b> <small><a href="https://aclanthology.org/2025.acl-short.96.pdf" target="_blank">[Paper]</a></small>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/KVMerger.png" alt=""></div>
+				<div class="col-md-9">
+					<b>Zheng Wang</b>, Boxiao Jin, Zhongzhi Yu, Minjia Zhang<br>
+					<b><font color="black">Model Tells You Where to Merge: Adaptive KV Cache Merging for LLMs on Long-Context Tasks</font></b><br>
+					<b><a href="https://arxiv.org/abs/2407.08454" target="_blank">arXiv preprint, 2024</a></b> <small><a href="https://arxiv.org/abs/2407.08454" target="_blank">[Paper]</a></small>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/speculation.png" alt=""></div>
+				<div class="col-md-9">
+					Haoran You, Yichao Fu, <b>Zheng Wang</b>, Amir Yazdanbakhsh, Yingyan (Celine) Lin<br>
+					<b><font color="black">When Linear Attention Meets Autoregressive Decoding: Towards More Effective and Efficient Linearized Large Language Models</font></b><br>
+					<b><a href="https://arxiv.org/abs/2406.07368" target="_blank">ICML 2024</a></b> <small><a href="https://arxiv.org/abs/2406.07368" target="_blank">[Paper]</a></small> <small><a href="https://github.com/GATECH-EIC/Linearized-LLM" target="_blank">[Code]</a></small>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/act.png" alt=""></div>
+				<div class="col-md-9">
+					Zhongzhi Yu*, <b>Zheng Wang*</b>, Yonggan Fu, Huihong Shi, Khalid Shaikh, Yingyan (Celine) Lin<br>
+					<b><font color="black">Unveiling and Harnessing Hidden Attention Sinks: Enhancing Large Language Models without Training through Attention Calibration</font></b><br>
+					<b><a href="https://arxiv.org/abs/2406.15765" target="_blank">ICML 2024</a></b> <small><a href="https://arxiv.org/abs/2406.15765" target="_blank">[Paper]</a></small> <small><a href="https://github.com/GATECH-EIC/ACT" target="_blank">[Code]</a></small>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/edge_LLM.png" alt=""></div>
+				<div class="col-md-9">
+					Zhongzhi Yu, <b>Zheng Wang</b>, Yuhan Li, Haoran You, Ruijie Gao, Xiaoya Zhou, Sreenidhi Reedy Bommu, Yang Katie Zhao, Yingyan (Celine) Lin<br>
+					<b><font color="black">EDGE-LLM: Enabling Efficient Large Language Model Adaptation on Edge Devices via Layerwise Unified Compression and Adaptive Layer Tuning &amp; Voting</font></b><br>
+					<b><a href="https://arxiv.org/abs/2406.15758" target="_blank">DAC 2024</a></b> <small><a href="https://arxiv.org/abs/2406.15758" target="_blank">[Paper]</a></small> <small><a href="https://github.com/GATECH-EIC/Edge-LLM" target="_blank">[Code]</a></small>
+				</div>
+			</div><hr>
+			<h5 class="pub-cat">Efficient LLM Reasoning &amp; Test-Time Compute</h5>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/SFPO.png" alt=""></div>
+				<div class="col-md-9">
+					Ziyan Wang*, <b>Zheng Wang*</b> Xingwei Qu, Qi Cheng, Jie Fu, Shengpu Tang, Minjia Zhang, Xiaoming Huo<br>
+					<b><font color="black">Slow-Fast Policy Optimization: Reposition-Before-Update for LLM Reasoning</font></b><br>
+					<b><a href="https://arxiv.org/pdf/2510.04072" target="_blank">ICLR 2026</a></b> <small><a href="https://arxiv.org/pdf/2510.04072" target="_blank">[Paper]</a></small> <small><a href="https://slow-fast-po.github.io/" target="_blank">[Website]</a></small> <small><a href="https://github.com/Urheen/SFPO" target="_blank">[Code]</a></small>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/STEP.png" alt=""></div>
+				<div class="col-md-9">
+					Zhixiang Liang, Beichen Huang, <b>Zheng Wang</b>, Minjia Zhang<br>
+					<b><font color="black">Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling</font></b><br>
+					<b><a href="https://arxiv.org/pdf/2601.09093" target="_blank">ACL Findings, 2026</a></b> <small><a href="https://arxiv.org/pdf/2601.09093" target="_blank">[Paper]</a></small> <small><a href="https://github.com/Supercomputing-System-AI-Lab/STEP" target="_blank">[Code]</a></small>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/EACL.png" alt=""></div>
+				<div class="col-md-9">
+					Hyewon Suh, Chaojian Li, Cheng-Jhih Shih, <b>Zheng Wang</b>, Kejing Xia, Yonggan Fu, Yingyan (Celine) Lin<br>
+					<b><font color="black">Think Hard Only When Needed: A Hybrid Best-of-N and Beam Search for Efficient Test-Time Compute</font></b><br>
+					<b><a href="https://par.nsf.gov/servlets/purl/10663192" target="_blank">EACL 2026</a></b> <small><a href="https://par.nsf.gov/servlets/purl/10663192" target="_blank">[Paper]</a></small>
+				</div>
+			</div><hr>
+			<div class="row pub">
+				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/TTC.png" alt=""></div>
+				<div class="col-md-9">
+					Sixu Li, Yuzhou Chen, Chaojian Li, Yonggan Fu, <b>Zheng Wang</b>, Zhongzhi Yu, Haoran You, Zhifan Ye, Wei Zhou, Yongan Zhang, Yingyan (Celine) Lin<br>
+					<b><font color="black">ORCHES: Orchestrated Test-Time-Compute-based LLM Reasoning on Collaborative GPU–PIM Heterogeneous System</font></b><br>
+					<b><a href="https://dl.acm.org/doi/pdf/10.1145/3725843.3756039" target="_blank">MICRO 2025</a></b> <small><a href="https://dl.acm.org/doi/pdf/10.1145/3725843.3756039" target="_blank">[Paper]</a></small>
+				</div>
+			</div><hr>
+  </div><br>
 
-          <div class="news-wrapper">
-            <div class="news-box" id="news-box">
-              <div class="news-list" id="news-list">
-                <p><span class="news-date">[05/2026]</span> I was selected as "Gold Reviewer" by ICML 2026.</p>
-                <p><span class="news-date">[04/2026]</span> PuzzleMoE is accepted to ICML 2026.</p>
-                <p><span class="news-date">[01/2026]</span> Two papers accepted to ICLR 2026 (Slow Fast Policy Optimization; Universal Position Interpolation). Congratulations to all collaborators.</p>
-                <p><span class="news-date">[01/2026]</span> One paper accepted to ACL 2026 (Hidden States as Early Signals).</p>
-                <p><span class="news-date">[01/2026]</span> One paper accepted to EACL 2026 (Think Hard Only When Needed).</p>
-                <p><span class="news-date">[09/2025]</span> ORCHES accepted to MICRO 2025.</p>
-                <p><span class="news-date">[08/2025]</span> Started my PhD at UIUC with Prof. Minjia Zhang!</p>
-                <p><span class="news-date">[05/2025]</span> One paper accepted to ACL 2025 (LAMB).</p>
-                <p><span class="news-date">[07/2024]</span> KVMerger released on arXiv.</p>
-                <p><span class="news-date">[05/2024]</span> Two papers accepted to ICML 2024 (Attention Calibration for LLMs, Linearized-LLM).</p>
-                <p><span class="news-date">[05/2024]</span> One paper accepted to DAC 2024 (EDGE-LLM).</p>
-              </div>
-            </div>
-          </div>
+  <!-- ============ Teaching ============ -->
+  <div class="container">
+    <h3 class="section" id="Teaching">Teaching</h3><hr>
+    <ul>
+      <li>
+        Teaching Assistant, CSE 6740 Computational Data Analysis (Machine Learning), Spring 2025<br>
+        <i>Georgia Tech, Instructor: <a href="https://sites.google.com/view/brainml/home" target="_blank">Prof. Anqi Wu</a></i>
+      </li>
+      <li>
+        Teaching Assistant, CSE 8803 Machine Learning for Neural/Behavior Data, Fall 2024<br>
+        <i>Georgia Tech, Instructor: <a href="https://sites.google.com/view/brainml/home" target="_blank">Prof. Anqi Wu</a></i>
+      </li>
+    </ul>
+  </div><br>
 
-        </td></tr>
-      </tbody></table>
+  <!-- ============ Services ============ -->
+  <div class="container">
+    <h3 class="section" id="Services">Services</h3><hr>
+    <ul>
+      <li><b>Conference Reviewer:</b> ICML 2025, NeurIPS 2025, AAAI 2025, ICLR 2026, ICML 2026, ECCV 2026, NeurIPS 2026, AAAI 2027, ICLR 2027</li>
+      <li><b>Gold Reviewer:</b> ICML 2026</li>
+    </ul>
+  </div><br>
 
-      <!-- ============ Publications ============ -->
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
-        <tr><td style="padding:20px;width:100%;vertical-align:middle">
-          <h2 style="margin-bottom:0">Publications</h2>
-          <p style="font-size:13px;color:#777;margin:2px 0 0 0">
-            (* denotes equal contribution)
-          </p>
-        </td></tr>
-      </tbody></table>
+  <!-- ============ Awards ============ -->
+  <div class="container">
+    <h3 class="section" id="Awards">Selected Awards</h3><hr>
+    <ul>
+      <li><tt>[Oct. 2026]</tt> Best Paper Candidate, COLM 2026 Workshop on Efficient Reasoning (PRESTO)</li>
+      <li><tt>[May&nbsp; 2026]</tt> Gold Reviewer, ICML 2026</li>
+      <li><tt>[Jun. 2023]</tt> Excellent Graduates of Beijing</li>
+      <li><tt>[Nov. 2022]</tt> Presidential Fellowship, 2021–2022 Academic Year</li>
+      <li><tt>[Nov. 2022]</tt> Xiaomi Special Scholarship, 2021–2022 Academic Year</li>
+    </ul>
+  </div><br>
 
-      <!-- ---- 分类 1: Efficient LLM Reasoning & Test-Time Compute ---- -->
-      <div class="pub-section-title">Efficient LLM Reasoning &amp; Test-Time Compute</div>
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
+  <!-- ============ Invited Talks ============ -->
+  <div class="container">
+    <h3 class="section" id="Talks">Invited Talks</h3><hr>
+    <ul>
+      <li><tt>[May&nbsp; 2026]</tt> Invited Talk on PRESTO and PuzzleMoE @ NVIDIA</li>
+    </ul>
+  </div><br>
 
-         <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/SFPO.png" alt="SFPO" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">Slow-Fast Policy Optimization: Reposition-Before-Update for LLM Reasoning</p>
-            <p class="pub-authors"> Ziyan Wang*, <strong>Zheng Wang*</strong> Xingwei Qu, Qi Cheng, Jie Fu, Shengpu Tang, Minjia Zhang, Xiaoming Huo</p>
-            <p class="pub-venue">ICLR 2026</p>
-            <p class="pub-links">
-              [<a href="https://arxiv.org/pdf/2510.04072">Paper</a>]
-              [<a href="https://slow-fast-po.github.io/">Website</a>]
-              [<a href="https://github.com/Urheen/SFPO">Code</a>]
-            </p>
-          </td>
-        </tr>
+  <!-- ============ Footer ============ -->
+  <div class="container">
+    <hr>
+    <p class="text-center" style="font-size:14px; color:#888">
+      © Zheng Wang 2026. Layout adapted from <a href="https://www.yongganfu.com/" target="_blank">Yonggan Fu</a>'s homepage.
+    </p>
+  </div>
 
-        <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/STEP.png" alt="STEP" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling</p>
-            <p class="pub-authors">Zhixiang Liang, Beichen Huang, <strong>Zheng Wang</strong>, Minjia Zhang</p>
-            <p class="pub-venue">ACL Findings, 2026</p>
-            <p class="pub-links">
-              [<a href="https://arxiv.org/pdf/2601.09093">Paper</a>]
-              [<a href="https://github.com/Supercomputing-System-AI-Lab/STEP">Code</a>]
-            </p>
-          </td>
-        </tr>
-
-        <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/EACL.png" alt="EACL" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">Think Hard Only When Needed: A Hybrid Best-of-N and Beam Search for Efficient Test-Time Compute</p>
-            <p class="pub-authors">Hyewon Suh, Chaojian Li, Cheng-Jhih Shih, <strong>Zheng Wang</strong>, Kejing Xia, Yonggan Fu, Yingyan (Celine) Lin</p>
-            <p class="pub-venue">EACL 2026</p>
-            <p class="pub-links">
-              [<a href="https://par.nsf.gov/servlets/purl/10663192">Paper</a>]
-            </p>
-          </td>
-        </tr>
-
-        <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/TTC.png" alt="TTC" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">ORCHES: Orchestrated Test-Time-Compute-based LLM Reasoning on Collaborative GPU–PIM Heterogeneous System</p>
-            <p class="pub-authors">Sixu Li, Yuzhou Chen, Chaojian Li, Yonggan Fu, <strong>Zheng Wang</strong>, Zhongzhi Yu, Haoran You, Zhifan Ye, Wei Zhou, Yongan Zhang, Yingyan (Celine) Lin</p>
-            <p class="pub-venue">MICRO 2025</p>
-            <p class="pub-links">
-              [<a href="https://dl.acm.org/doi/pdf/10.1145/3725843.3756039">Paper</a>]
-            </p>
-          </td>
-        </tr>
-
-      </tbody></table>
-
-      <!-- ---- 分类 2: Efficient LLM & VLM Inference ---- -->
-      <div class="pub-section-title">Efficient LLM Inference &amp; Compression</div>
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
-
-        <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-             <img src="images/UPI.png" alt="UPI" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">From Collapse to Control: Understanding and Extending Context Length in Emerging Hybrid Models via Universal Position Interpolation</p>
-            <p class="pub-authors">Haochen Shen, Davis Wertheimer, <strong>Zheng Wang</strong>, Garrett Goon, Derrick Liu, Naigang Wang, Mudhakar Srivatsa, Raghu K. Ganti, Minjia Zhang</p>
-            <p class="pub-venue">ICLR 2026</p>
-            <p class="pub-links">
-              [<a href="https://openreview.net/forum?id=MjmORKLHUI">Paper</a>]
-            </p>
-          </td>
-        </tr>
-
-        <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/PuzzleMoE.png" alt="PuzzleMoE" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">PuzzleMoE: Efficient Compression of Large Mixture-of-Experts Models via Sparse Expert Merging and Bit-packed Inference</p>
-            <p class="pub-authors">Yushu Zhao*, <strong>Zheng Wang*</strong>, Minjia Zhang</p>
-            <p class="pub-venue">ICML 2026</p>
-            <p class="pub-links">
-              [<a href="https://arxiv.org/pdf/2511.04805">Paper</a>]
-            </p>
-          </td>
-        </tr>
-
-        <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/LAMB.png" alt="LAMB" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">LAMB: A Training-Free Method to Enhance the Long-Context Understanding of SSMs via Attention-Guided Token Filtering</p>
-            <p class="pub-authors">Zhifan Ye, <strong>Zheng Wang</strong>, Kejing Xia, Jihoon Hong, Leshu Li, Lexington A. Whalen, Cheng Wan, Haoran You, Celine Lin, Souvik Kundu</p>
-            <p class="pub-venue">ACL 2025</p>
-            <p class="pub-links">
-              [<a href="https://aclanthology.org/2025.acl-short.96.pdf">Paper</a>]
-            </p>
-          </td>
-        </tr>
-
-        <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/KVMerger.png" alt="KVMerger" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">Model Tells You Where to Merge: Adaptive KV Cache Merging for LLMs on Long-Context Tasks</p>
-            <p class="pub-authors"><strong>Zheng Wang</strong>, Boxiao Jin, Zhongzhi Yu, Minjia Zhang</p>
-            <p class="pub-venue">arXiv preprint, 2024</p>
-            <p class="pub-links">
-              [<a href="https://arxiv.org/abs/2407.08454">Paper</a>]
-            </p>
-          </td>
-        </tr>
-
-        <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/speculation.png" alt="Linearized-LLM" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">When Linear Attention Meets Autoregressive Decoding: Towards More Effective and Efficient Linearized Large Language Models</p>
-            <p class="pub-authors">Haoran You, Yichao Fu, <strong>Zheng Wang</strong>, Amir Yazdanbakhsh, Yingyan (Celine) Lin</p>
-            <p class="pub-venue">ICML 2024</p>
-            <p class="pub-links">
-              [<a href="https://arxiv.org/abs/2406.07368">Paper</a>]
-              [<a href="https://github.com/GATECH-EIC/Linearized-LLM">Code</a>]
-            </p>
-          </td>
-        </tr>
-
-         <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/act.png" alt="ACT" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">Unveiling and Harnessing Hidden Attention Sinks: Enhancing Large Language Models without Training through Attention Calibration</p>
-            <p class="pub-authors">Zhongzhi Yu*, <strong>Zheng Wang*</strong>, Yonggan Fu, Huihong Shi, Khalid Shaikh, Yingyan (Celine) Lin</p>
-            <p class="pub-venue">ICML 2024</p>
-            <p class="pub-links">
-              [<a href="https://arxiv.org/abs/2406.15765">Paper</a>]
-              [<a href="https://github.com/GATECH-EIC/ACT">Code</a>]
-            </p>
-          </td>
-        </tr>
-
-        <tr class="pub-row">
-          <td style="padding:10px;width:25%;vertical-align:middle;text-align:center">
-            <img src="images/edge_LLM.png" alt="EDGE-LLM" style="width:100%;max-width:230px;">
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <p class="pub-title">EDGE-LLM: Enabling Efficient Large Language Model Adaptation on Edge Devices via Layerwise Unified Compression and Adaptive Layer Tuning &amp; Voting</p>
-            <p class="pub-authors">Zhongzhi Yu, <strong>Zheng Wang</strong>, Yuhan Li, Haoran You, Ruijie Gao, Xiaoya Zhou, Sreenidhi Reedy Bommu, Yang Katie Zhao, Yingyan (Celine) Lin</p>
-            <p class="pub-venue">DAC 2024</p>
-            <p class="pub-links">
-              [<a href="https://arxiv.org/abs/2406.15758">Paper</a>]
-              [<a href="https://github.com/GATECH-EIC/Edge-LLM">Code</a>]
-            </p>
-          </td>
-        </tr>
-
-      </tbody></table>
-
-      <!-- ============ Teaching ============ -->
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
-        <tr><td style="padding:20px 15px 0 15px">
-          <h2 style="margin:0 0 10px">Teaching</h2>
-          <ul style="list-style-type:none;padding:0;margin:0">
-            <li><strong>Teaching Assistant</strong> — CSE 8803 Machine Learning for Neural/Behavior Data, Georgia Tech, Fall 2024. Instructor: <a href="https://sites.google.com/view/brainml/home">Prof. Anqi Wu</a>.</li>
-            <li><strong>Teaching Assistant</strong> — CSE 6740 Computational Data Analysis (Machine Learning), Georgia Tech, Spring 2025. Instructor: <a href="https://sites.google.com/view/brainml/home">Prof. Anqi Wu</a>.</li>
-          </ul>
-        </td></tr>
-      </tbody></table>
-
-      <!-- ============ Services ============ -->
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
-        <tr><td style="padding:20px 15px 0 15px">
-          <h2 style="margin:0 0 10px">Services</h2>
-          <ul style="list-style-type:none;padding:0;margin:0">
-            <li><strong>Conference Reviewer:</strong> ICML 2025, NeurIPS 2025, AAAI 2025, ICLR 2026, ICML 2026, ECCV 2026, NeurIPS 2026</li>
-          </ul>
-        </td></tr>
-      </tbody></table>
-
-      <!-- ============ Selected Awards ============ -->
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
-        <tr><td style="padding:20px 15px 0 15px">
-          <h2 style="margin:0 0 10px">Selected Awards</h2>
-          <ul style="list-style-type:none;padding:0;margin:0">
-            <li><strong>[Jun. 2023]</strong> Excellent Graduates of Beijing</li>
-            <li><strong>[Nov. 2022]</strong> Presidential Fellowship, 2021–2022 Academic Year</li>
-            <li><strong>[Nov. 2022]</strong> Xiaomi Special Scholarship, 2021–2022 Academic Year</li>
-          </ul>
-        </td></tr>
-      </tbody></table>
-
-      <!-- ============ Footer ============ -->
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
-        <tr><td style="padding:30px 0 10px 0">
-          <p style="text-align:right;font-size:small;color:#888">
-            Design and source code from
-            <a href="https://github.com/jonbarron/jonbarron_website">jonbarron</a>.
-            Layout inspired by <a href="https://www.yongganfu.com/">Yonggan Fu</a>.
-          </p>
-        </td></tr>
-      </tbody></table>
-
-    </td></tr>
-    </tbody></table>
-
-    <!-- News 改为用户手动滚动,不需要 JS -->
-  </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 手机端点击导航链接后自动收起菜单
+    $('.navbar-nav .nav-link').on('click', function () { $('#navbarToggle').collapse('hide'); });
+  </script>
+</body>
 </html>
