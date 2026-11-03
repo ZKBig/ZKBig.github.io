@@ -32,7 +32,7 @@
 
     .pub-cat { margin: 26px 0 14px; font-weight: 600; color: var(--theme); }
     .pub { align-items: center; }
-    .pub-img { width: 200px; max-height: 140px; object-fit: contain; }
+    .pub-img { width: 100%; max-height: 200px; object-fit: contain; border-radius: 4px; }
     .pub-hl { font-weight: bold; display: flex; align-items: center; gap: 6px; margin-top: 2px; }
     .hl-icon { height: 18px; width: auto; }
 
@@ -141,8 +141,8 @@
     <hr>
 			<h5 class="pub-cat">Efficient LLM Inference &amp; Compression</h5>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><a href="images/xPress_demo.mp4" target="_blank" title="Click to watch full size"><video class="img-fluid pub-img" src="images/xPress_demo.mp4" autoplay loop muted playsinline aria-label="Autoregressive vs. dFlash vs. xPress decoding the same GSM8K prompt"></video></a></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><a href="images/xPress_demo.mp4" target="_blank" title="Click to watch full size"><video class="img-fluid pub-img" src="images/xPress_demo.mp4" autoplay loop muted playsinline aria-label="Autoregressive vs. dFlash vs. xPress decoding the same GSM8K prompt"></video></a></div>
+				<div class="col-md-8">
 					<b>Zheng Wang</b>, Davis Wertheimer, Yu Chin Fabian Lim, Mudhakar Srivatsa, Raghu K. Ganti, Minjia Zhang, Naigang Wang<br>
 					<b><font color="black">xPress: Parallel Refinement for Diffusion Drafters in Speculative Decoding</font></b><br>
 					<b><a href="https://arxiv.org/abs/2608.02438" target="_blank">arXiv preprint, 2026</a></b> <small><a href="https://arxiv.org/abs/2608.02438" target="_blank">[Paper]</a></small> <small><a href="https://github.com/Supercomputing-System-AI-Lab/xPress" target="_blank">[Code]</a></small> <small><a href="https://supercomputing-system-ai-lab.github.io/blogs/blog/xpress-parallel-refinement-for-diffusion-drafters-in-speculative-decoding/" target="_blank">[Blog]</a></small> <small><a href="https://github.com/vllm-project/vllm/pull/54448" target="_blank">[vLLM]</a></small> <small><a href="https://github.com/vllm-project/speculators/blob/main/examples/train/xpress_qwen3_8b_regen_online.sh" target="_blank">[Speculators]</a></small>
@@ -151,8 +151,8 @@
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/PRESTO.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/PRESTO.png" alt=""></div>
+				<div class="col-md-8">
 					<b>Zheng Wang*</b>, Zhifan Ye*, Qi Cheng, Yonggan Fu, Ziyan Wang, Feng Zhu, Haozhe Zhao, Jan Kautz, Pavlo Molchanov, Humphrey Shi, Minjia Zhang<br>
 					<b><font color="black">PRESTO: Prefix-Aligned Tree Drafting for Diffusion Speculative Decoding</font></b><br>
 					<b><a href="https://arxiv.org/abs/2607.22634" target="_blank">COLM 2026 Workshop on Efficient Reasoning</a></b> <small><a href="https://arxiv.org/abs/2607.22634" target="_blank">[Paper]</a></small>
@@ -160,56 +160,56 @@
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/UPI.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/UPI.png" alt=""></div>
+				<div class="col-md-8">
 					Haochen Shen, Davis Wertheimer, <b>Zheng Wang</b>, Garrett Goon, Derrick Liu, Naigang Wang, Mudhakar Srivatsa, Raghu K. Ganti, Minjia Zhang<br>
 					<b><font color="black">From Collapse to Control: Understanding and Extending Context Length in Emerging Hybrid Models via Universal Position Interpolation</font></b><br>
 					<b><a href="https://openreview.net/forum?id=MjmORKLHUI" target="_blank">ICLR 2026</a></b> <small><a href="https://openreview.net/forum?id=MjmORKLHUI" target="_blank">[Paper]</a></small>
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/PuzzleMoE.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/PuzzleMoE.png" alt=""></div>
+				<div class="col-md-8">
 					Yushu Zhao*, <b>Zheng Wang*</b>, Minjia Zhang<br>
 					<b><font color="black">PuzzleMoE: Efficient Compression of Large Mixture-of-Experts Models via Sparse Expert Merging and Bit-packed Inference</font></b><br>
 					<b><a href="https://arxiv.org/pdf/2511.04805" target="_blank">ICML 2026</a></b> <small><a href="https://arxiv.org/pdf/2511.04805" target="_blank">[Paper]</a></small>
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/LAMB.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/LAMB.png" alt=""></div>
+				<div class="col-md-8">
 					Zhifan Ye, <b>Zheng Wang</b>, Kejing Xia, Jihoon Hong, Leshu Li, Lexington A. Whalen, Cheng Wan, Haoran You, Celine Lin, Souvik Kundu<br>
 					<b><font color="black">LAMB: A Training-Free Method to Enhance the Long-Context Understanding of SSMs via Attention-Guided Token Filtering</font></b><br>
 					<b><a href="https://aclanthology.org/2025.acl-short.96.pdf" target="_blank">ACL 2025</a></b> <small><a href="https://aclanthology.org/2025.acl-short.96.pdf" target="_blank">[Paper]</a></small>
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/KVMerger.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/KVMerger.png" alt=""></div>
+				<div class="col-md-8">
 					<b>Zheng Wang</b>, Boxiao Jin, Zhongzhi Yu, Minjia Zhang<br>
 					<b><font color="black">Model Tells You Where to Merge: Adaptive KV Cache Merging for LLMs on Long-Context Tasks</font></b><br>
 					<b><a href="https://arxiv.org/abs/2407.08454" target="_blank">arXiv preprint, 2024</a></b> <small><a href="https://arxiv.org/abs/2407.08454" target="_blank">[Paper]</a></small>
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/speculation.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/speculation.png" alt=""></div>
+				<div class="col-md-8">
 					Haoran You, Yichao Fu, <b>Zheng Wang</b>, Amir Yazdanbakhsh, Yingyan (Celine) Lin<br>
 					<b><font color="black">When Linear Attention Meets Autoregressive Decoding: Towards More Effective and Efficient Linearized Large Language Models</font></b><br>
 					<b><a href="https://arxiv.org/abs/2406.07368" target="_blank">ICML 2024</a></b> <small><a href="https://arxiv.org/abs/2406.07368" target="_blank">[Paper]</a></small> <small><a href="https://github.com/GATECH-EIC/Linearized-LLM" target="_blank">[Code]</a></small>
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/act.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/act.png" alt=""></div>
+				<div class="col-md-8">
 					Zhongzhi Yu*, <b>Zheng Wang*</b>, Yonggan Fu, Huihong Shi, Khalid Shaikh, Yingyan (Celine) Lin<br>
 					<b><font color="black">Unveiling and Harnessing Hidden Attention Sinks: Enhancing Large Language Models without Training through Attention Calibration</font></b><br>
 					<b><a href="https://arxiv.org/abs/2406.15765" target="_blank">ICML 2024</a></b> <small><a href="https://arxiv.org/abs/2406.15765" target="_blank">[Paper]</a></small> <small><a href="https://github.com/GATECH-EIC/ACT" target="_blank">[Code]</a></small>
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/edge_LLM.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/edge_LLM.png" alt=""></div>
+				<div class="col-md-8">
 					Zhongzhi Yu, <b>Zheng Wang</b>, Yuhan Li, Haoran You, Ruijie Gao, Xiaoya Zhou, Sreenidhi Reedy Bommu, Yang Katie Zhao, Yingyan (Celine) Lin<br>
 					<b><font color="black">EDGE-LLM: Enabling Efficient Large Language Model Adaptation on Edge Devices via Layerwise Unified Compression and Adaptive Layer Tuning &amp; Voting</font></b><br>
 					<b><a href="https://arxiv.org/abs/2406.15758" target="_blank">DAC 2024</a></b> <small><a href="https://arxiv.org/abs/2406.15758" target="_blank">[Paper]</a></small> <small><a href="https://github.com/GATECH-EIC/Edge-LLM" target="_blank">[Code]</a></small>
@@ -217,32 +217,32 @@
 			</div><hr>
 			<h5 class="pub-cat">Efficient LLM Reasoning &amp; Test-Time Compute</h5>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/SFPO.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/SFPO.png" alt=""></div>
+				<div class="col-md-8">
 					Ziyan Wang*, <b>Zheng Wang*</b> Xingwei Qu, Qi Cheng, Jie Fu, Shengpu Tang, Minjia Zhang, Xiaoming Huo<br>
 					<b><font color="black">Slow-Fast Policy Optimization: Reposition-Before-Update for LLM Reasoning</font></b><br>
 					<b><a href="https://arxiv.org/pdf/2510.04072" target="_blank">ICLR 2026</a></b> <small><a href="https://arxiv.org/pdf/2510.04072" target="_blank">[Paper]</a></small> <small><a href="https://slow-fast-po.github.io/" target="_blank">[Website]</a></small> <small><a href="https://github.com/Urheen/SFPO" target="_blank">[Code]</a></small>
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/STEP.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/STEP.png" alt=""></div>
+				<div class="col-md-8">
 					Zhixiang Liang, Beichen Huang, <b>Zheng Wang</b>, Minjia Zhang<br>
 					<b><font color="black">Hidden States as Early Signals: Step-level Trace Evaluation and Pruning for Efficient Test-Time Scaling</font></b><br>
 					<b><a href="https://arxiv.org/pdf/2601.09093" target="_blank">ACL Findings, 2026</a></b> <small><a href="https://arxiv.org/pdf/2601.09093" target="_blank">[Paper]</a></small> <small><a href="https://github.com/Supercomputing-System-AI-Lab/STEP" target="_blank">[Code]</a></small>
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/EACL.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/EACL.png" alt=""></div>
+				<div class="col-md-8">
 					Hyewon Suh, Chaojian Li, Cheng-Jhih Shih, <b>Zheng Wang</b>, Kejing Xia, Yonggan Fu, Yingyan (Celine) Lin<br>
 					<b><font color="black">Think Hard Only When Needed: A Hybrid Best-of-N and Beam Search for Efficient Test-Time Compute</font></b><br>
 					<b><a href="https://par.nsf.gov/servlets/purl/10663192" target="_blank">EACL 2026</a></b> <small><a href="https://par.nsf.gov/servlets/purl/10663192" target="_blank">[Paper]</a></small>
 				</div>
 			</div><hr>
 			<div class="row pub">
-				<div class="col-md-3 text-center"><img class="img-fluid pub-img" src="images/TTC.png" alt=""></div>
-				<div class="col-md-9">
+				<div class="col-md-4 text-center"><img class="img-fluid pub-img" src="images/TTC.png" alt=""></div>
+				<div class="col-md-8">
 					Sixu Li, Yuzhou Chen, Chaojian Li, Yonggan Fu, <b>Zheng Wang</b>, Zhongzhi Yu, Haoran You, Zhifan Ye, Wei Zhou, Yongan Zhang, Yingyan (Celine) Lin<br>
 					<b><font color="black">ORCHES: Orchestrated Test-Time-Compute-based LLM Reasoning on Collaborative GPU–PIM Heterogeneous System</font></b><br>
 					<b><a href="https://dl.acm.org/doi/pdf/10.1145/3725843.3756039" target="_blank">MICRO 2025</a></b> <small><a href="https://dl.acm.org/doi/pdf/10.1145/3725843.3756039" target="_blank">[Paper]</a></small>
